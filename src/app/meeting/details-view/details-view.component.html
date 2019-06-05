@@ -98,7 +98,7 @@
 
       <br>
 
-    <div *ngIf="isAdmin ">
+    <div *ngIf="isAdmin && !isPreviousDate">
       <div *ngIf="meetingId !== undefined && meetingId !== null; else elseBlock" meetingId class="form-row">
         <div class="form-group col-lg-4">
           <button class="btn btn-lg btn-primary btn-block" type="button" (click)="editMeeting()">Update Meeting</button>
