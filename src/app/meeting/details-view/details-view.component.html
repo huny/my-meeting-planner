@@ -1,0 +1,121 @@
+<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+
+  <a class="navbar-brand" href="/">My Meeting Planner</a>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+
+    <span class="navbar-toggler-icon"></span>
+
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+    <ul class="navbar-nav">
+
+      <li class="nav-item">
+
+        <a class="nav-link" (click)="logout()">Logout</a>
+
+      </li>
+
+    </ul>
+
+    <ul class="navbar-nav">
+      <li class="nav-item">
+
+        <p class="navbar-text"><b>Welcome {{userName}} </b></p>
+
+      </li>
+    </ul>
+
+    <button class="btn btn-outline-info my-2 my-sm-0" (click)="goBackToAllMeetings()">Go Back</button>
+
+  </div>
+
+</nav>
+
+<div class="row p-0 m-0">
+
+  <div class="col-sm"></div>
+
+  <div class="col-sm p-5">
+
+    <h2 class="form-signin-heading">Meeting Details</h2>
+
+    <br>
+
+    <span>Start Time: </span>
+
+    <label for="dtPickerStartAt" class="sr-only">Start Time</label>
+    <input class="form-control" [min]="min" [(ngModel)]="startAt" [owlDateTimeTrigger]="dtPickerStartAt"
+      [owlDateTime]="dtPickerStartAt" placeholder="Start Time" required autofocus
+      [disabled]="!isAdmin || isPreviousDate">
+    <owl-date-time #dtPickerStartAt></owl-date-time>
+
+    <br>
+
+    <span>End Time: </span>
+
+    <label for="dtPickerEndAt" class="sr-only">End Time</label>
+    <input class="form-control" [min]="min" [(ngModel)]="endAt" [owlDateTimeTrigger]="dtPickerEndAt"
+      [owlDateTime]="dtPickerEndAt" placeholder="End Time" required [disabled]="!isAdmin || isPreviousDate">
+    <owl-date-time #dtPickerEndAt></owl-date-time>
+
+    <br>
+
+    <span>Title: </span>
+
+    <label for="inputTitle" class="sr-only">Title</label>
+    <input type="text" id="inputTitle" class="form-control" [(ngModel)]="title" placeholder="Title" required
+      [disabled]="!isAdmin || isPreviousDate">
+
+    <br>
+
+    <span>Description: </span>
+
+    <label for="inputDescription" class="sr-only">Description</label>
+
+    <input type="textarea" id="inputDescription" class="form-control" [(ngModel)]="description"
+      placeholder="Description" required [disabled]="!isAdmin || isPreviousDate">
+
+    <br>
+
+    <span>Place: </span>
+
+    <label for="inputPlace" class="sr-only">Place</label>
+
+    <input type="text" id="inputPlace" class="form-control" [(ngModel)]="place" placeholder="Place" required
+      [disabled]="!isAdmin || isPreviousDate">
+
+    <br>
+
+    <span>Created By: </span>
+
+    <label for="inputCreatedBy" class="sr-only">Title</label>
+    <input type="text" id="inputCreatedBy" class="form-control" [(ngModel)]="createdBy" placeholder="Created By" required
+      [disabled]= "true"> 
+
+      <br>
+
+    <div *ngIf="isAdmin ">
+      <div *ngIf="meetingId !== undefined && meetingId !== null; else elseBlock" meetingId class="form-row">
+        <div class="form-group col-lg-4">
+          <button class="btn btn-lg btn-primary btn-block" type="button" (click)="editMeeting()">Update Meeting</button>
+        </div>
+        <div class="form-group col-lg-4">
+          <button class="btn btn-lg btn-danger btn-block" type="button" (click)="deleteMeeting()">Delete
+            Meeting</button>
+        </div>
+      </div>
+
+      <ng-template #elseBlock>
+        <button class="btn btn-lg btn-primary btn-block" type="button" (click)="createMeeting()">Create Meeting</button>
+      </ng-template>
+
+    </div>
+  </div>
+
+  <div class="col-sm"></div>
+
+</div>
