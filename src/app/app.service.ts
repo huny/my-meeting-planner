@@ -10,7 +10,7 @@ import { HttpErrorResponse, HttpParams } from "@angular/common/http";
 @Injectable()
 export class AppService {
 
-  private url = 'https://api.youwecan.xyz';
+  private url = 'http://api.youwecan.xyz';
 
   private countryCodeList = [
     {
